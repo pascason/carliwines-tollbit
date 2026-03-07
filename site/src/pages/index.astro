@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Home">
+  <!-- Hero -->
+  <section class="relative bg-stone-900 text-white overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-stone-900 via-stone-800 to-amber-950 opacity-95"></div>
+    <div class="relative max-w-6xl mx-auto px-6 py-32 md:py-44">
+      <div class="max-w-3xl">
+        <p class="text-amber-400 font-medium tracking-wider uppercase text-sm mb-4">CMS-Certified Sommelier · Redwood City, CA</p>
+        <h1 class="font-display text-5xl md:text-7xl font-bold leading-tight mb-6">
+          Wine is a story.<br/>
+          <span class="text-amber-400">Let me tell it.</span>
+        </h1>
+        <p class="text-stone-300 text-lg md:text-xl leading-relaxed max-w-xl mb-10">
+          Private tastings, corporate wine experiences, and hands-on education — crafted for curious palates in the Bay Area and beyond.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/services/private-tastings" class="bg-amber-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-amber-700 transition-colors">Book a Tasting</a>
+          <a href="/learn/how-to-choose-wine" class="border border-stone-500 text-stone-200 px-8 py-3 rounded-lg font-medium hover:border-amber-400 hover:text-amber-400 transition-colors">Start Learning</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-stone-900 mb-6">Wine education that meets you where you are</h2>
+        <p class="text-stone-600 leading-relaxed mb-4">
+          Whether you're building your first wine collection, planning a corporate tasting event, or training for the Court of Master Sommeliers exam, I bring two decades of passion and a certified palate to every glass.
+        </p>
+        <p class="text-stone-600 leading-relaxed mb-6">
+          Based in Redwood City, I work with individuals, restaurants, and companies across the San Francisco Bay Area. My approach is rooted in accessibility — great wine shouldn't feel intimidating.
+        </p>
+        <a href="/about" class="text-amber-700 font-medium hover:text-amber-800 transition-colors inline-flex items-center gap-2">
+          Learn more about my background
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+      <div class="bg-gradient-to-br from-amber-100 to-stone-200 rounded-2xl p-10 text-center">
+        <div class="text-6xl mb-4">🍷</div>
+        <p class="font-display text-2xl font-bold text-stone-900 mb-2">Roberto Carli</p>
+        <p class="text-stone-600">CMS-Certified Sommelier</p>
+        <p class="text-stone-500 text-sm mt-1">Court of Master Sommeliers, Americas</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Overview -->
+  <section class="bg-stone-100 py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-stone-900 mb-4">What I Offer</h2>
+        <p class="text-stone-600 max-w-2xl mx-auto">From intimate home tastings to large-scale corporate events, every experience is tailored to your group's level and interests.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <a href="/services/private-tastings" class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow group">
+          <div class="text-4xl mb-4">🥂</div>
+          <h3 class="font-display text-xl font-bold text-stone-900 mb-2 group-hover:text-amber-700 transition-colors">Private Tastings</h3>
+          <p class="text-stone-600 text-sm leading-relaxed">Curated wine flights in your home. Learn to taste like a sommelier while enjoying world-class bottles.</p>
+        </a>
+        <a href="/services/corporate-events" class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow group">
+          <div class="text-4xl mb-4">🏢</div>
+          <h3 class="font-display text-xl font-bold text-stone-900 mb-2 group-hover:text-amber-700 transition-colors">Corporate Events</h3>
+          <p class="text-stone-600 text-sm leading-relaxed">Team-building tastings, client entertainment, and wine-and-dine experiences for the modern workplace.</p>
+        </a>
+        <a href="/services/wine-education" class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow group">
+          <div class="text-4xl mb-4">📚</div>
+          <h3 class="font-display text-xl font-bold text-stone-900 mb-2 group-hover:text-amber-700 transition-colors">Wine Education</h3>
+          <p class="text-stone-600 text-sm leading-relaxed">Structured courses from beginner to advanced, including CMS exam preparation and blind tasting drills.</p>
+        </a>
+        <a href="/services/cellar-consulting" class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow group">
+          <div class="text-4xl mb-4">🏠</div>
+          <h3 class="font-display text-xl font-bold text-stone-900 mb-2 group-hover:text-amber-700 transition-colors">Cellar Consulting</h3>
+          <p class="text-stone-600 text-sm leading-relaxed">Build and curate a wine collection that reflects your taste, budget, and storage capabilities.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Articles -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <div class="text-center mb-14">
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-stone-900 mb-4">From the Cellar</h2>
+      <p class="text-stone-600 max-w-2xl mx-auto">Educational articles on wine regions, tasting technique, and the art of the vine.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <a href="/learn/blind-tasting-guide" class="group">
+        <div class="bg-gradient-to-br from-red-50 to-amber-50 rounded-xl p-6 mb-4 group-hover:from-red-100 group-hover:to-amber-100 transition-all">
+          <div class="text-5xl text-center py-6">🔍</div>
+        </div>
+        <h3 class="font-display text-lg font-bold text-stone-900 group-hover:text-amber-700 transition-colors">The Complete Guide to Blind Tasting</h3>
+        <p class="text-stone-500 text-sm mt-1">Master the deductive tasting method used by sommeliers worldwide.</p>
+      </a>
+      <a href="/regions/burgundy" class="group">
+        <div class="bg-gradient-to-br from-purple-50 to-rose-50 rounded-xl p-6 mb-4 group-hover:from-purple-100 group-hover:to-rose-100 transition-all">
+          <div class="text-5xl text-center py-6">🇫🇷</div>
+        </div>
+        <h3 class="font-display text-lg font-bold text-stone-900 group-hover:text-amber-700 transition-colors">Burgundy: The Soul of Pinot Noir</h3>
+        <p class="text-stone-500 text-sm mt-1">Why this small French region produces the most revered wines on Earth.</p>
+      </a>
+      <a href="/learn/food-and-wine-pairing" class="group">
+        <div class="bg-gradient-to-br from-green-50 to-amber-50 rounded-xl p-6 mb-4 group-hover:from-green-100 group-hover:to-amber-100 transition-all">
+          <div class="text-5xl text-center py-6">🍽️</div>
+        </div>
+        <h3 class="font-display text-lg font-bold text-stone-900 group-hover:text-amber-700 transition-colors">Food & Wine Pairing Fundamentals</h3>
+        <p class="text-stone-500 text-sm mt-1">Forget the old rules. Here's how pairing actually works.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Testimonial / CTA -->
+  <section class="bg-stone-900 text-white py-20">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <blockquote class="font-display text-2xl md:text-3xl italic leading-relaxed text-stone-200 mb-8">
+        "Roberto transformed our company offsite into an unforgettable wine journey. Every executive left with a deeper appreciation — and a few bottles to take home."
+      </blockquote>
+      <p class="text-amber-400 font-medium">— VP of People, Series C Tech Company, Palo Alto</p>
+      <div class="mt-12">
+        <a href="/contact" class="bg-amber-600 text-white px-10 py-4 rounded-lg font-medium text-lg hover:bg-amber-700 transition-colors">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wine Regions Preview -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="font-display text-3xl md:text-4xl font-bold text-stone-900 mb-10 text-center">Explore Wine Regions</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <a href="/regions/burgundy" class="bg-gradient-to-br from-red-100 to-purple-100 rounded-xl p-6 text-center hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-2">🇫🇷</div><p class="font-display font-bold text-stone-900 text-sm">Burgundy</p>
+      </a>
+      <a href="/regions/bordeaux" class="bg-gradient-to-br from-red-100 to-stone-200 rounded-xl p-6 text-center hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-2">🏰</div><p class="font-display font-bold text-stone-900 text-sm">Bordeaux</p>
+      </a>
+      <a href="/regions/napa-valley" class="bg-gradient-to-br from-amber-100 to-green-100 rounded-xl p-6 text-center hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-2">🇺🇸</div><p class="font-display font-bold text-stone-900 text-sm">Napa Valley</p>
+      </a>
+      <a href="/regions/barolo" class="bg-gradient-to-br from-rose-100 to-amber-100 rounded-xl p-6 text-center hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-2">🇮🇹</div><p class="font-display font-bold text-stone-900 text-sm">Barolo</p>
+      </a>
+      <a href="/regions/rioja" class="bg-gradient-to-br from-red-100 to-orange-100 rounded-xl p-6 text-center hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-2">🇪🇸</div><p class="font-display font-bold text-stone-900 text-sm">Rioja</p>
+      </a>
+      <a href="/regions/champagne" class="bg-gradient-to-br from-amber-50 to-stone-100 rounded-xl p-6 text-center hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-2">🥂</div><p class="font-display font-bold text-stone-900 text-sm">Champagne</p>
+      </a>
+    </div>
+  </section>
+</Layout>

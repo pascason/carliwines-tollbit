@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+/* Prose styling for article content */
+.prose h2 { margin-top: 2.5rem; margin-bottom: 1rem; }
+.prose h3 { margin-top: 2rem; margin-bottom: 0.75rem; }
+.prose p { margin-bottom: 1rem; line-height: 1.8; }
+.prose ul, .prose ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.prose li { margin-bottom: 0.5rem; line-height: 1.7; }
+.prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+.prose th { text-align: left; padding: 0.75rem 1rem; background: #f5f0eb; font-weight: 600; border-bottom: 2px solid #d6cdc4; }
+.prose td { padding: 0.75rem 1rem; border-bottom: 1px solid #e7e0d8; }
+.prose a { color: #b45309; text-decoration: underline; text-underline-offset: 2px; }
+.prose a:hover { color: #92400e; }
+.prose strong { color: #1c1917; }
+.prose blockquote { border-left: 4px solid #d97706; padding-left: 1.5rem; margin: 1.5rem 0; font-style: italic; color: #57534e; }

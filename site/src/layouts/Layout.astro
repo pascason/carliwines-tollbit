@@ -1,0 +1,156 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Roberto Carli — CMS-Certified Sommelier in Redwood City, CA. Wine education, private tastings, and consulting.' } = Astro.props;
+---
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="author" content="Roberto Carli" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{title} | Carli Wines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased">
+  <header class="bg-stone-900 text-stone-100 sticky top-0 z-50 shadow-lg">
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="font-display text-2xl font-bold tracking-wide text-amber-400 hover:text-amber-300 transition-colors">
+        Carli Wines
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="/about" class="hover:text-amber-400 transition-colors">About</a>
+        <div class="relative group">
+          <button class="hover:text-amber-400 transition-colors flex items-center gap-1">
+            Services
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          <div class="absolute top-full left-0 bg-stone-800 rounded-lg shadow-xl py-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <a href="/services/private-tastings" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Private Tastings</a>
+            <a href="/services/corporate-events" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Corporate Events</a>
+            <a href="/services/wine-education" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Wine Education</a>
+            <a href="/services/cellar-consulting" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Cellar Consulting</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="hover:text-amber-400 transition-colors flex items-center gap-1">
+            Learn
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          <div class="absolute top-full left-0 bg-stone-800 rounded-lg shadow-xl py-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <a href="/learn/blind-tasting-guide" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Blind Tasting Guide</a>
+            <a href="/learn/how-to-choose-wine" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">How to Choose Wine</a>
+            <a href="/learn/food-and-wine-pairing" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Food & Wine Pairing</a>
+            <a href="/learn/reading-wine-labels" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Reading Wine Labels</a>
+            <a href="/learn/building-a-wine-cellar" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Building a Wine Cellar</a>
+            <a href="/learn/cms-certification-path" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">CMS Certification Path</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="hover:text-amber-400 transition-colors flex items-center gap-1">
+            Regions
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          <div class="absolute top-full right-0 bg-stone-800 rounded-lg shadow-xl py-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <a href="/regions/burgundy" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Burgundy</a>
+            <a href="/regions/bordeaux" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Bordeaux</a>
+            <a href="/regions/napa-valley" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Napa Valley</a>
+            <a href="/regions/barolo" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Barolo</a>
+            <a href="/regions/rioja" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Rioja</a>
+            <a href="/regions/champagne" class="block px-4 py-2 hover:bg-stone-700 hover:text-amber-400">Champagne</a>
+          </div>
+        </div>
+        <a href="/contact" class="bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors">Contact</a>
+      </div>
+      <button id="mobile-menu-btn" class="md:hidden text-stone-100">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+    </nav>
+    <div id="mobile-menu" class="hidden md:hidden bg-stone-800 px-6 pb-4">
+      <a href="/about" class="block py-2 hover:text-amber-400">About</a>
+      <a href="/services/private-tastings" class="block py-2 hover:text-amber-400">Private Tastings</a>
+      <a href="/services/corporate-events" class="block py-2 hover:text-amber-400">Corporate Events</a>
+      <a href="/services/wine-education" class="block py-2 hover:text-amber-400">Wine Education</a>
+      <a href="/services/cellar-consulting" class="block py-2 hover:text-amber-400">Cellar Consulting</a>
+      <p class="text-stone-500 text-xs mt-3 mb-1 uppercase tracking-wider">Learn</p>
+      <a href="/learn/blind-tasting-guide" class="block py-2 hover:text-amber-400">Blind Tasting Guide</a>
+      <a href="/learn/how-to-choose-wine" class="block py-2 hover:text-amber-400">How to Choose Wine</a>
+      <a href="/learn/food-and-wine-pairing" class="block py-2 hover:text-amber-400">Food & Wine Pairing</a>
+      <a href="/learn/reading-wine-labels" class="block py-2 hover:text-amber-400">Reading Wine Labels</a>
+      <a href="/learn/building-a-wine-cellar" class="block py-2 hover:text-amber-400">Building a Wine Cellar</a>
+      <a href="/learn/cms-certification-path" class="block py-2 hover:text-amber-400">CMS Certification Path</a>
+      <p class="text-stone-500 text-xs mt-3 mb-1 uppercase tracking-wider">Regions</p>
+      <a href="/regions/burgundy" class="block py-2 hover:text-amber-400">Burgundy</a>
+      <a href="/regions/bordeaux" class="block py-2 hover:text-amber-400">Bordeaux</a>
+      <a href="/regions/napa-valley" class="block py-2 hover:text-amber-400">Napa Valley</a>
+      <a href="/regions/barolo" class="block py-2 hover:text-amber-400">Barolo</a>
+      <a href="/regions/rioja" class="block py-2 hover:text-amber-400">Rioja</a>
+      <a href="/regions/champagne" class="block py-2 hover:text-amber-400">Champagne</a>
+      <a href="/contact" class="block py-2 mt-2 text-amber-400 font-medium">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="bg-stone-900 text-stone-400 mt-20">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-4 gap-10">
+        <div>
+          <h3 class="font-display text-xl font-bold text-amber-400 mb-4">Carli Wines</h3>
+          <p class="text-sm leading-relaxed">CMS-certified sommelier offering wine education, private tastings, and consulting services in the San Francisco Bay Area.</p>
+        </div>
+        <div>
+          <h4 class="text-stone-200 font-semibold mb-4">Services</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/services/private-tastings" class="hover:text-amber-400 transition-colors">Private Tastings</a></li>
+            <li><a href="/services/corporate-events" class="hover:text-amber-400 transition-colors">Corporate Events</a></li>
+            <li><a href="/services/wine-education" class="hover:text-amber-400 transition-colors">Wine Education</a></li>
+            <li><a href="/services/cellar-consulting" class="hover:text-amber-400 transition-colors">Cellar Consulting</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-stone-200 font-semibold mb-4">Learn</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/learn/blind-tasting-guide" class="hover:text-amber-400 transition-colors">Blind Tasting Guide</a></li>
+            <li><a href="/learn/how-to-choose-wine" class="hover:text-amber-400 transition-colors">How to Choose Wine</a></li>
+            <li><a href="/learn/food-and-wine-pairing" class="hover:text-amber-400 transition-colors">Food & Wine Pairing</a></li>
+            <li><a href="/learn/reading-wine-labels" class="hover:text-amber-400 transition-colors">Reading Wine Labels</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-stone-200 font-semibold mb-4">Wine Regions</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/regions/burgundy" class="hover:text-amber-400 transition-colors">Burgundy</a></li>
+            <li><a href="/regions/bordeaux" class="hover:text-amber-400 transition-colors">Bordeaux</a></li>
+            <li><a href="/regions/napa-valley" class="hover:text-amber-400 transition-colors">Napa Valley</a></li>
+            <li><a href="/regions/barolo" class="hover:text-amber-400 transition-colors">Barolo</a></li>
+            <li><a href="/regions/rioja" class="hover:text-amber-400 transition-colors">Rioja</a></li>
+            <li><a href="/regions/champagne" class="hover:text-amber-400 transition-colors">Champagne</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-stone-700 mt-12 pt-8 text-center text-sm">
+        <p>&copy; {new Date().getFullYear()} Carli Wines. All rights reserved. Roberto Carli, CMS-Certified Sommelier.</p>
+        <p class="mt-1">Redwood City, California</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu')?.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
