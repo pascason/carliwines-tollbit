@@ -1,0 +1,234 @@
+# =============================================================================
+# Microsoft Dev Box Image Definition
+# Project: Podcastify (Azure-hosted Node.js + React web app)
+# Usage:  Upload this folder as a catalog to your Dev Box project.
+#         Assign the image definition to a dev box pool.
+#         New dev boxes created from that pool will have all tools pre-installed.
+# Docs:   https://learn.microsoft.com/en-us/azure/dev-box/how-to-configure-team-customizations
+# =============================================================================
+
+$schema: "1.0"
+name: "podcastify-devbox"
+image: microsoftwindowsdesktop_windows-ent-cpc_win11-24h2-ent-cpc-m365
+description: >
+  Ready-to-code dev box for Azure-hosted Node.js + React web applications.
+  Pre-installs Node.js 20 LTS, Azure CLI, Docker Desktop, Git, GitHub CLI,
+  VS Code with extensions, and clones the project repository.
+  Derived from Podcastify best practices for vibe-coding with GitHub Copilot.
+
+# =============================================================================
+# SYSTEM TASKS — Run as LocalSystem during provisioning (before first sign-in)
+# =============================================================================
+tasks:
+
+  # ---------------------------------------------------------------------------
+  # 1. Core runtimes & CLIs
+  # ---------------------------------------------------------------------------
+  - name: ~/winget
+    displayName: "Install Node.js 20 LTS"
+    parameters:
+      package: OpenJS.NodeJS.LTS
+      version: "20"
+
+  - name: ~/winget
+    displayName: "Install Git"
+    parameters:
+      package: Git.Git
+
+  - name: ~/winget
+    displayName: "Install Azure CLI"
+    parameters:
+      package: Microsoft.AzureCLI
+
+  - name: ~/winget
+    displayName: "Install GitHub CLI"
+    parameters:
+      package: GitHub.cli
+
+  - name: ~/winget
+    displayName: "Install Docker Desktop"
+    parameters:
+      package: Docker.DockerDesktop
+
+  # ---------------------------------------------------------------------------
+  # 2. Editor
+  # ---------------------------------------------------------------------------
+  - name: ~/winget
+    displayName: "Install Visual Studio Code"
+    parameters:
+      package: Microsoft.VisualStudioCode
+
+  # ---------------------------------------------------------------------------
+  # 3. Install global npm packages (TypeScript toolchain)
+  # ---------------------------------------------------------------------------
+  - name: ~/powershell
+    displayName: "Install global npm packages"
+    parameters:
+      command: |
+        # Wait for Node.js to be available on PATH after winget install
+        $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+
+        # Install global npm packages used across projects
+        npm install -g typescript ts-node nodemon
+
+        Write-Host "Global npm packages installed: typescript, ts-node, nodemon"
+
+  # ---------------------------------------------------------------------------
+  # 4. Install VS Code extensions (system-wide)
+  # ---------------------------------------------------------------------------
+  - name: ~/powershell
+    displayName: "Install VS Code extensions"
+    parameters:
+      command: |
+        # Refresh PATH to pick up VS Code
+        $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+
+        $extensions = @(
+          # --- AI & Copilot ---
+          "GitHub.copilot",
+          "GitHub.copilot-chat",
+
+          # --- Azure ---
+          "ms-vscode.azure-account",
+          "ms-azuretools.vscode-azureresourcegroups",
+          "ms-azuretools.vscode-azurecontainerapps",
+          "ms-azuretools.vscode-docker",
+          "ms-azuretools.vscode-azurefunctions",
+
+          # --- JavaScript / TypeScript ---
+          "dbaeumer.vscode-eslint",
+          "esbenp.prettier-vscode",
+          "ms-vscode.vscode-typescript-next",
+
+          # --- React / Frontend ---
+          "dsznajder.es7-react-js-snippets",
+          "bradlc.vscode-tailwindcss",
+
+          # --- API Testing ---
+          "humao.rest-client",
+
+          # --- Git ---
+          "eamodio.gitlens",
+          "mhutchie.git-graph",
+
+          # --- Markdown ---
+          "yzhang.markdown-all-in-one",
+          "DavidAnson.vscode-markdownlint",
+
+          # --- Dev Box ---
+          "DevCenter.ms-devbox"
+        )
+
+        foreach ($ext in $extensions) {
+          Write-Host "Installing VS Code extension: $ext"
+          code --install-extension $ext --force 2>$null
+        }
+
+        Write-Host "All VS Code extensions installed."
+
+  # ---------------------------------------------------------------------------
+  # 5. Clone the project repository
+  # ---------------------------------------------------------------------------
+  - name: ~/git-clone
+    displayName: "Clone Podcastify repository"
+    parameters:
+      repositoryUrl: https://github.com/robertocarli_microsoft/Podcastify.git
+      directory: C:\Source\Podcastify
+
+# =============================================================================
+# USER TASKS — Run as the signed-in user after first login
+# =============================================================================
+userTasks:
+
+  # ---------------------------------------------------------------------------
+  # 6. npm install for both frontend and backend
+  # ---------------------------------------------------------------------------
+  - name: ~/powershell
+    displayName: "Install project dependencies (npm install)"
+    parameters:
+      command: |
+        $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+
+        $projectRoot = "C:\Source\Podcastify"
+
+        if (Test-Path "$projectRoot\backend\package.json") {
+          Write-Host "Installing backend dependencies..."
+          Set-Location "$projectRoot\backend"
+          npm install
+        }
+
+        if (Test-Path "$projectRoot\frontend\package.json") {
+          Write-Host "Installing frontend dependencies..."
+          Set-Location "$projectRoot\frontend"
+          npm install
+        }
+
+        Write-Host "All project dependencies installed."
+
+  # ---------------------------------------------------------------------------
+  # 7. Create .env template for backend secrets
+  # ---------------------------------------------------------------------------
+  - name: ~/powershell
+    displayName: "Create .env template"
+    parameters:
+      command: |
+        $envFile = "C:\Source\Podcastify\backend\.env"
+
+        if (-not (Test-Path $envFile)) {
+          @"
+        # =============================================================
+        # Podcastify Backend Environment Variables
+        # Fill in your values and restart the server.
+        # This file is in .gitignore — never commit it.
+        # =============================================================
+
+        # Azure OpenAI
+        AZURE_OPENAI_ENDPOINT=https://<your-resource>.openai.azure.com
+        AZURE_OPENAI_KEY=<your-key>
+        AZURE_OPENAI_DEPLOYMENT=gpt-4.1
+        AZURE_OPENAI_API_VERSION=2025-01-01-preview
+
+        # Azure Speech
+        AZURE_SPEECH_KEY=<your-key>
+        AZURE_SPEECH_REGION=eastus
+
+        # Azure Blob Storage
+        AZURE_STORAGE_CONNECTION_STRING=<your-connection-string>
+
+        # Azure Communication Services (Email)
+        ACS_EMAIL_CONNECTION_STRING=<your-connection-string>
+
+        # App settings
+        NODE_ENV=development
+        PORT=3001
+        USE_MOCK_AI=true
+        "@ | Out-File -FilePath $envFile -Encoding utf8
+
+          Write-Host ".env template created at $envFile"
+        } else {
+          Write-Host ".env already exists, skipping."
+        }
+
+  # ---------------------------------------------------------------------------
+  # 8. Azure CLI login reminder
+  # ---------------------------------------------------------------------------
+  - name: ~/powershell
+    displayName: "Azure CLI setup reminder"
+    parameters:
+      command: |
+        Write-Host ""
+        Write-Host "========================================================" -ForegroundColor Cyan
+        Write-Host "  Dev Box setup complete!" -ForegroundColor Green
+        Write-Host "========================================================" -ForegroundColor Cyan
+        Write-Host ""
+        Write-Host "  Next steps:" -ForegroundColor Yellow
+        Write-Host "  1. Open VS Code:  code C:\Source\Podcastify"
+        Write-Host "  2. Sign into Azure CLI with your PERSONAL account:"
+        Write-Host "       az login --use-device-code"
+        Write-Host "  3. Fill in backend\.env with your Azure keys"
+        Write-Host "  4. Read docs\BEST_PRACTICES_AZURE_VIBE_CODING.md"
+        Write-Host ""
+        Write-Host "  Staging:    https://podcastify-staging.redhill-84c315ec.eastus.azurecontainerapps.io"
+        Write-Host "  Production: https://podcastify.redhill-84c315ec.eastus.azurecontainerapps.io"
+        Write-Host ""
+        Write-Host "========================================================" -ForegroundColor Cyan
